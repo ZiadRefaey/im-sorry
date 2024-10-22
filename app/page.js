@@ -1,101 +1,213 @@
+"use client";
 import Image from "next/image";
-
+import Green from "@/public/GreenPixel.svg";
+import Cyan from "@/public/CyanPixel.svg";
+import Heart from "@/public/heart.png";
+import Purple from "@/public/PurplePixel.svg";
+import { useEffect, useRef } from "react";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+const handleScrollUp = () => {
+  window.scrollBy({
+    top: -window.innerHeight, // Scrolls 100vh down
+    behavior: "smooth", // Smooth scroll animation
+  });
+};
+const handleScrollDown = () => {
+  window.scrollBy({
+    top: window.innerHeight, // Scrolls 100vh down
+    behavior: "smooth", // Smooth scroll animation
+  });
+};
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const firstElementRef = useRef(null);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Toggle class for first and third elements (normal snapping)
+      if (firstElementRef.current) {
+        firstElementRef.current.classList.toggle("active");
+      }
+    }, 1000);
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, []);
+  return (
+    <div className="w-full h-full">
+      <Container>
+        <div
+          className="flex items-center justify-center gap-20 element"
+          ref={firstElementRef}
+        >
+          <Image src={Green} alt="pixel" className="size-20 " />
+
+          <Image src={Purple} alt="pixel" className="size-20" />
+
+          <Image src={Cyan} alt="pixel" className="size-20 " />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <div className="w-full flex items-center justify-center flex-col gap-10">
+          <h1 className="text-2xl">
+            I wish I could have saved my game
+            <br />
+            But do I still get a second chance?
+          </h1>
+          <h2 className="text-5xl">
+            I&apos;m Very Sorry Katty. Will you forgive me?
+          </h2>
+        </div>
+        <div></div>
+        <div></div>
+        <ButtonDown>Why is Dwagon Smelly</ButtonDown>
+      </Container>
+      <Container>
+        <ButtonUp>Will Kat forgive me?</ButtonUp>
+        <Image src={Green} alt="pixel" className="size-20 " />
+        <TextContainer>
+          <p className="text-5xl mb-10">Why is dwagon Smelly?</p>
+          <p className="text-2xl">Dwagon did not give kat any explination</p>
+          <p className="text-2xl">
+            He left her to overthink what she did wrong for too long when she
+            hasnt done anything wrong and he stinks
+          </p>
+          <p className="text-2xl">
+            Next time he will not stink so much and will communicate whatever on
+            his mind
+          </p>
+        </TextContainer>
+        <div></div>
+        <ButtonDown>What Kat means to dwagon</ButtonDown>
+      </Container>
+      <Container>
+        <ButtonUp>Why is dwagon Smelly</ButtonUp>
+        <Image src={Purple} alt="pixel" className="size-20 " />
+        <TextContainer>
+          <p className="text-5xl mb-10">What Kat means to dwagon?</p>
+          <p className="text-2xl">
+            Kat is something special. aside from being the cutest thing ever
+          </p>
+          <p className="text-2xl">
+            She always shows how much she cares and how kind she is.
+          </p>
+          <p className="text-2xl">
+            She is never out of puns and she&apos;s the reason dwagon is certain
+            he will have a laugh everyday
+          </p>
+          <p className="text-2xl">
+            Dwagon is looking forward to most of his days because he knows he
+            has a kat where he can share everything with and will always be
+            there to liste.
+          </p>
+          <p className="text-2xl">
+            Dwagon is always interested in all funny and serious rambles
+            provides him and he loves listening to her speak too much
+          </p>
+          <p className="text-2xl">
+            Dwagon couldnt think of a better friend than Kat.
+          </p>
+        </TextContainer>
+        <div></div>
+        <ButtonDown>Dwagon Is Sorry</ButtonDown>
+      </Container>
+      <Container>
+        {" "}
+        <ButtonUp>What Kat means to dwagon?</ButtonUp>
+        <Image src={Cyan} alt="pixel" className="size-20 " />
+        <TextContainer>
+          <p className="text-5xl mb-10">Dwagon is sorry</p>
+          <p className="text-2xl">
+            I&apos;m seriously very sorry Kat. I know how much I&apos;ve hurt
+            you and there is no amount of words that could be said to properly
+            apologize to you
+          </p>
+          <p className="text-2xl">
+            I&apos;ll take this as a learning experience to do better by you. I
+            will not repeat the same mistake again and I will definitely do all
+            I can to make up for it.
+          </p>
+          <p className="text-2xl">all you gotta do is to let me know how.</p>
+          <p className="text-2xl">I&apos;m So Sorry.</p>
+        </TextContainer>
+        <h1 className="text-7xl">Will you let me hit the reset button?</h1>
+        <div className="w-full items-center justify-center flex gap-4">
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                {" "}
+                <button className="px-8 py-4 hover:bg-white/80 transition-all duration-150 bg-white text-black rounded-2xl text-xl cursor-not-allowed">
+                  No You are so Smelly I Won&apos;t Forgive You
+                </button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p className="text-2xl">
+                  You will have to forgive me just tell me what can i do :(
+                </p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+
+          <button
+            className="px-8 py-4 hover:bg-white/80 transition-all duration-150 bg-white text-black rounded-2xl text-xl"
+            onClick={handleScrollDown}
+          >
+            You So Smelly But I have no other choice
+          </button>
+        </div>
+      </Container>
+      <Container>
+        <div className="flex items-center justify-center">
+          <Image src={Heart} alt="heart" className="size-20" />
+          <Image src={Heart} alt="heart" className="size-20" />
+          <Image src={Heart} alt="heart" className="size-20" />
+        </div>
+        <p className="text-7xl">
+          Thank you so much Kathy. I will not take this forgranted
+        </p>
+        <TextContainer>
+          <p className="text-4xl">Leeg and HxH tonight(NOW)?</p>
+          <p className="text-4xl"> tell me in discord x.x</p>
+        </TextContainer>
+      </Container>
+    </div>
+  );
+}
+function ButtonDown({ children }) {
+  return (
+    <button
+      className="px-8 py-4 hover:bg-white/80 transition-all duration-150 bg-white text-black rounded-2xl text-xl flex items-center justify-center flex-col gap-1"
+      onClick={handleScrollDown}
+    >
+      {children}
+      <FaChevronDown />
+    </button>
+  );
+}
+function ButtonUp({ children }) {
+  return (
+    <button
+      className="px-8 py-4 hover:bg-white/80 transition-all duration-150 bg-white text-black rounded-2xl text-xl flex items-center justify-center flex-col gap-1"
+      onClick={handleScrollUp}
+    >
+      <FaChevronUp />
+      {children}
+    </button>
+  );
+}
+function Container({ children }) {
+  return (
+    <div className="w-full h-[100vh] flex items-center justify-around flex-col">
+      {children}
+    </div>
+  );
+}
+function TextContainer({ children }) {
+  return (
+    <div className="flex flex-col items-center justify-center gap-4">
+      {children}
     </div>
   );
 }
