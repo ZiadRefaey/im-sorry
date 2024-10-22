@@ -100,7 +100,7 @@ export default function Home() {
           <p className="text-2xl">
             Dwagon is looking forward to most of his days because he knows he
             has a kat where he can share everything with and will always be
-            there to liste.
+            there to listen.
           </p>
           <p className="text-2xl">
             Dwagon is always interested in all funny and serious rambles
@@ -129,7 +129,10 @@ export default function Home() {
             will not repeat the same mistake again and I will definitely do all
             I can to make up for it.
           </p>
-          <p className="text-2xl">all you gotta do is to let me know how.</p>
+          <p className="text-2xl">
+            all you gotta do is to let me know how. I&apos;ll even take your
+            little brother to practice and pick him up from school if i have to
+          </p>
           <p className="text-2xl">I&apos;m So Sorry.</p>
         </TextContainer>
         <h1 className="text-7xl">Will you let me hit the reset button?</h1>
